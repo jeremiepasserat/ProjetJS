@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" href="img/gg.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<p>Bienvenue sur mon site sur vos séries télé préférées.</p>
+
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/vendor/jquery-3.2.1.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<form id="connexion" action="/json/connexion.php" method="post" style="display: none">
+    <input type="text" name="id"></br>
+    <input type="password" name="mdp"></br>
+    <input type="submit" value="se connecter">
+</form>
+
+
+
+<!-- Pour afficher la liste des séries tv disponibles -->
+<!--<div id="liste" style="display: none">
+</div>-->
+<table id="liste"></table>
+<div id="synopsis" style="display: none">
+    <p>Résumé de la série</p>
+</div>
+<div id="note" style="display: none">
+    <p>Note moyenne de l'ensemble des utilisateurs</p>
+</div>
+<div id="commentaires" style="display: none">
+    <p>Commentaires des différents utilisateurs</p>
+</div>
+<form id="commenter" method="post" style="display: none">
+    <p>Renseigner un commentaire</p>
+    <input type="text" name="nvocommentaire" id="nvocommentaire" placeholder="Votre commentaire"></br>
+    <p>Votre note entre 1 et 10</p>
+    <input type="range" value="5" max="10" min="0" step="0.5"></br>
+    <input type="submit" name="envoicom" value="envoyer">
+</form>
+
+<form id="deconnexion" action="/json/deconnexion.php" method="post" style="display: none">
+    <input type="submit" value="se deconnecter">
+</form>
+
+
+
+
+
+</body>
+</html>
