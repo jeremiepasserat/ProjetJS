@@ -17,6 +17,7 @@ $result->test = false;
 
 if (isset ($_POST['id']) && isset($_POST['mdp'])) {
     $_SESSION['connecte'] = "ok";
+    $_SESSION['user'] = $_POST['id'];
     $result->connecte = 'ok';
     $result->message = true;
 }

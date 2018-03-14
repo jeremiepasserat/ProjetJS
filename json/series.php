@@ -8,6 +8,8 @@
 include 'Serie.php';
 session_start();
 
+    $_SESSION['test'] = 'prout';
+
 
     $ac = new Serie();
     $synopsis_ac = "Dans un futur où les humains peuvent transférer leur esprit d'un corps à l'autre,

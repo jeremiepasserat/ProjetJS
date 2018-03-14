@@ -27,6 +27,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="js/vendor/jquery-3.2.1.min.js"></script>
 <script src="js/plugins.js"></script>
+<script src="js/serie.js"></script>
 <script src="js/main.js"></script>
 
 <form id="connexion" action="/json/connexion.php" method="post" style="display: none">
@@ -51,12 +52,23 @@
     <p>Commentaires des différents utilisateurs</p>
 </div>
 <form id="commenter" method="post" style="display: none">
+
     <p>Renseigner un commentaire</p>
-    <input type="text" name="nvocommentaire" id="nvocommentaire" placeholder="Votre commentaire"></br>
-    <p>Votre note entre 1 et 10</p>
-    <input type="range" value="5" max="10" min="0" step="0.5"></br>
-    <input type="submit" name="envoicom" value="envoyer">
+    <input type="text" name="nvocommentaire" id="nvocommentaire" placeholder="Votre commentaire">
+    </br>
+    <input type="submit" id="envoicom" name="envoicom">
+    </br>
+    <input type="hidden" id="id_show_com" name="id_show_com">
 </form>
+<form id="noter" method="post" style="display: none">
+
+    <p>Votre note entre 1 et 10</p>
+    <input type="number" name="nvellenote" step="1" value="0" min="0" max="10" style="display: initial"></br>
+    <input type="submit" name="envoinote" value="noter">
+    <input type="hidden" id="id_show_note" name="id_show_note">
+</form>
+    <p id="dejanote"></p>
+
 
 <form id="deconnexion" action="/json/deconnexion.php" method="post" style="display: none">
     <input type="submit" value="se deconnecter">
