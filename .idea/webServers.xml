@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a5387604-bd86-4c2b-a31d-68c0d4c06902" name="ftp-tvshowtime-jp.alwaysdata.net" url="http://ftp-tvshowtime-jp.alwaysdata.net">
+        <fileTransfer host="ftp-tvshowtime-jp.alwaysdata.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
