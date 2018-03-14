@@ -4,6 +4,19 @@
 
     $(() => {
 
+        $('#ajout_serie').submit(function () {
+           // alert('prout');
+            $("#liste").hide();
+            $("#new_serie").show();
+            $("#ajout_serie").hide();
+            return false;
+        });
+
+        $('#new_serie').submit(function () {
+            $("#new_serie").hide();
+            $("#liste").show();
+            return false;
+        })
 
         $('#commenter').submit(function () {
             //   alert(id_page());
@@ -48,6 +61,7 @@
             .done(function(data) {
                 if (data.test){
                     createListe();
+                    $('#ajout_serie').show();
                     $('#deconnexion').show();
                 }
                 else {

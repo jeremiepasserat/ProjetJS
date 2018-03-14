@@ -1,3 +1,5 @@
+//
+
 // permet d'afficher les titres et les images de chaque série télé
         let showTitres = function (noms, images) {
 
@@ -18,6 +20,7 @@
 
             $(".image").on("click", "", function () {
                 getInfos($(this).attr('id'));
+                showComNote($(this).attr('id'));
             })
         };
 
@@ -105,8 +108,8 @@
                 data: {id: id}
             })
                 .done(function (data) {
-                    alert(data.commentaire);
-                    //showComNote(data.commentaires[id], data.note[id]);
+                    //alert(data.commentaire);
+                    showComNote(data.commentaires, data.note);
 
 
                 })

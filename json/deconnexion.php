@@ -7,7 +7,9 @@
  */
 session_start();
 
+unset($_SESSION['connecte']);
 
+/*
 
 if (isset($_SESSION['serie_1'])){
     $serie1 = $_SESSION['serie_1'];
@@ -51,3 +53,5 @@ if (isset($serie2)){
 if (isset($serie3)){
     $_SESSION['serie_3'] = $serie3;
 }
+
+*/
