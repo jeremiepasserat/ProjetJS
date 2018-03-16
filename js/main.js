@@ -5,16 +5,19 @@
     $(() => {
 
         $('#ajout_serie').submit(function () {
-           // alert('prout');
+            // alert('prout');
             $("#liste").hide();
             $("#new_serie").show();
+            $("#retour_liste").show();
             $("#ajout_serie").hide();
             return false;
         });
 
-        $('#new_serie').submit(function () {
+        $('#retour_liste').submit(function () {
             $("#new_serie").hide();
+            $("#retour_liste").hide();
             $("#liste").show();
+            $("#ajout_serie").show();
             return false;
         })
 
@@ -61,6 +64,8 @@
             .done(function(data) {
                 if (data.test){
                     createListe();
+                    $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id).show();
+
                     $('#ajout_serie').show();
                     $('#deconnexion').show();
                 }
@@ -79,8 +84,11 @@
                 method:$(this).attr('method'),
                 data:$(this).serialize()
             })
-                .done(function () {
-                    window.location.reload();
+                .done(function (data) {
+                    if (data.connecte)
+                        window.location.reload();
+                    else
+                        alert(data.message);
                 })
                 .fail(function (){
                     alert('fail');

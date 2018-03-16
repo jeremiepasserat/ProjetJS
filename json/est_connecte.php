@@ -11,6 +11,7 @@ $result->test = false;
 if (isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'ok')
 {
     $result->test = true;
+    $result->id = $_SESSION['user'];
 }
 else {
 

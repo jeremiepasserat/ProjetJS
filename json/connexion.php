@@ -11,20 +11,42 @@ session_start();
 $result = new stdClass();
 $result->resultat = true;
 $result->message = " ";
-$result->connecte = 'pas ok';
+$result->connecte = false;
 
 $result->test = false;
 
-if (isset ($_POST['id']) && isset($_POST['mdp'])) {
-    $_SESSION['connecte'] = "ok";
-    $_SESSION['user'] = $_POST['id'];
-    $result->connecte = 'ok';
-    $result->message = true;
+if (($_POST['id'] == "") || ($_POST['mdp'] == "")){
+    $result->message = "merci de ne pas laisser un champ vide";
 }
 else {
-    $result->message = "non" ;
-    $result->resultat = false;
+    if (isset ($_POST['id']) && isset($_POST['mdp'])) {
+        if (($_POST['id'] == "olivier") && ($_POST['mdp'] == "pons"))  {
+            $_SESSION['connecte'] = "ok";
+            $_SESSION['user'] = $_POST['id'];
+            $result->truc = 'truc';
+            $result->connecte = true;
+            //  $result->message = true;
+        }
+
+        if (($_POST['id'] == "test") && ($_POST['mdp'] == "test"))  {
+            $_SESSION['connecte'] = "ok";
+            $_SESSION['user'] = $_POST['id'];
+            $result->truc = 'truc';
+            $result->connecte = true;
+            //  $result->message = true;
+        }
+        $result->message = "erreur d'identifiants";
+
+        /*  if(($_POST['id'] == "") || ($_POST['mdp'] == "")) {
+
+              $result->message = "un champ est vide" ;*/
+    }
 }
+/*
+else {
+    $result->message = "erreur d'identifiants" ;
+    $result->resultat = false;
+}*/
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 header('Content-type: application/json');

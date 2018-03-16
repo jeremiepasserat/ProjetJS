@@ -7,22 +7,6 @@
  */
 session_start();
 
-unset($_SESSION['connecte']);
-
-/*
-
-if (isset($_SESSION['serie_1'])){
-    $serie1 = $_SESSION['serie_1'];
-}
-
-if (isset($_SESSION['serie_2'])){
-    $serie2 = $_SESSION['serie_2'];
-}
-
-if (isset($_SESSION['serie_3'])){
-    $serie3 = $_SESSION['serie_3'];
-}
-
 // Détruit toutes les variables de session
 $_SESSION = array();
 
@@ -41,17 +25,3 @@ if (ini_get("session.use_cookies")) {
 
 // Finalement, on détruit la session.
 session_destroy();
-
-if (isset($serie1)){
-    $_SESSION['serie_1'] = $serie1  ;
-}
-
-if (isset($serie2)){
-    $_SESSION['serie_2'] = $serie2;
-}
-
-if (isset($serie3)){
-    $_SESSION['serie_3'] = $serie3;
-}
-
-*/
