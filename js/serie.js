@@ -1,7 +1,25 @@
-//
+/* les fonctions get vont chercher les données, les fonctions show les affichent sur ma page*/
+
+
+/*doit prendre en compte le synopsis qui est invariant et laisser les 2 dernières uniquement pour com / note */
+
+// permet de charger les titres et les images de chaque série télé
+let createListe = function () {
+    $.ajax({
+        url: '/json/liste.php'
+    })
+        .done(function (data) {
+            showTitres(data.noms, data.images);
+        })
+        .fail(function () {
+            alert('fail');
+        });
+};
+
+
 
 // permet d'afficher les titres et les images de chaque série télé
-        let showTitres = function (noms, images) {
+        let showListe = function (noms, images) {
 
             let tr = $('<tr />');
             for (let i = 0; i < 3; ++i) {
@@ -25,18 +43,23 @@
         };
 
 
-// permet de charger les titres et les images de chaque série télé
-        let createListe = function () {
-            $.ajax({
-                url: '/json/liste.php'
-            })
-                .done(function (data) {
-                    showTitres(data.noms, data.images);
-                })
-                .fail(function () {
-                    alert('fail');
-                });
-        };
+// permet de charger le synopsis, la note et les commentaires de chaque série télé
+let getInfos = function (id) {
+    $.ajax({
+        url: '/json/liste.php'
+    })
+        .done(function (data) {
+            //alert(data.test);
+            showInfos(data.synopsis[id], data.commentaires[id], data.note[id], id);
+            $('#commenter').show();
+            $('#noter').show();
+
+        })
+        .fail(function () {
+            alert('fail');
+        });
+};
+
 
 // permet d'afficher le synopsis, la note et les commentaires de chaque série télé
         let showInfos = function (synopsis, commentaires, note, id) {
@@ -65,6 +88,10 @@
             $('#id_show_note').val(id);
         };
 
+/* Si mes 4 fonctions précéndentes sont améliorées les 2 suivantes sont useless */
+
+/* possibilité de faire une fonction pour gérer l'update mysql des notes / commentaires, qui découlera sur un getInfos()*/
+
 //version allégée de la fonction précédente permettant d'actualiser l'affichage de la note et des coms
 //si de nouveaux sont ajoutés
         let showComNote = function (commentaire, note) {
@@ -82,22 +109,6 @@
                 $('#commentaires').append($('<p />')).text(commentaire).show();
             }
         }
-// permet de charger le synopsis, la note et les commentaires de chaque série télé
-        let getInfos = function (id) {
-            $.ajax({
-                url: '/json/liste.php'
-            })
-                .done(function (data) {
-                    //alert(data.test);
-                    showInfos(data.synopsis[id], data.commentaires[id], data.note[id], id);
-                    $('#commenter').show();
-                    $('#noter').show();
-
-                })
-                .fail(function () {
-                    alert('fail');
-                });
-        };
 
 // permet de charger la note et les commentaires de chaque série télé après insertion utilisateur
 // evite les problèmes d'écrasement des $_SESSION dans le code PHP

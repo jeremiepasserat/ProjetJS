@@ -7,6 +7,5 @@
  */
 
 /*
-*   Permet l'ajout d'une nouvelle note pour une série (+ son auteur). La moyenne des notes de la série est calc ulée pour affichage
- * Si une note est présente dans la BD pour un utilisateur donné le champ de notation est caché.
+*   Permet l'ajout d'une nouvelle note pour une série (+ son auteur)
 */

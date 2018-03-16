@@ -4,6 +4,12 @@
 
     $(() => {
 
+        $('#new_serie').submit(function () {
+            alert('prout');
+            //ajax avec new_serie.php.
+            return false;
+        });
+
         $('#ajout_serie').submit(function () {
             // alert('prout');
             $("#liste").hide();
@@ -19,8 +25,9 @@
             $("#liste").show();
             $("#ajout_serie").show();
             return false;
-        })
+        });
 
+        // new_com.php
         $('#commenter').submit(function () {
             //   alert(id_page());
             $.ajax({
@@ -39,6 +46,7 @@
             return false;
         });
 
+        //new_note.php
         $('#noter').submit(function () {
             //   alert('test');
             $.ajax({
@@ -65,7 +73,6 @@
                 if (data.test){
                     createListe();
                     $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id).show();
-
                     $('#ajout_serie').show();
                     $('#deconnexion').show();
                 }
@@ -113,7 +120,7 @@
         });
 
 
-        $('#liste').show();
+        //$('#liste').show();
 
     });
 
