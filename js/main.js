@@ -57,7 +57,6 @@
             return false;
         });
 
-        // new_com.php
         $('#commenter').submit(function () {
             $.ajax({
                 url:'/json/new_com.php',
@@ -68,29 +67,19 @@
 
                    getInfos(data.id);
                 }
-                alert(data.message);
             }).fail(function () {
                 alert ('fail#commenter');
             });
             return false;
         });
 
-        //new_note.php
         $('#noter').submit(function () {
-            //   alert('test');
             $.ajax({
                 url:'/json/new_note.php',
                 method:$(this).attr('method'),
                 data:$(this).serialize()
             }).done(function(data){
-              /*  if (!data.noter){
-                    $('#noter').hide();
-                    $('#dejanote').text('Vous avez déja noté cette série').show();
-                }
-                else
-                {*/
                     getInfos(data.id);
-                //}
             }).fail(function () {
                 alert ('fail#noter');
             });
