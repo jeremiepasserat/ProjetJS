@@ -34,7 +34,7 @@ else {
     $statement = $pdo->prepare("INSERT INTO Commentaires (Id, Commentaire, Identifiant) VALUES (?, ?, ?)");
 
 
-    $resultat = $statement->execute(array(($_POST['id_show_com'] + 1), $com, $_SESSION['user']));
+    $resultat = $statement->execute(array(($_POST['id_show_com'] + 1), htmlspecialchars($com), $_SESSION['user']));
 
   //  $statement = $pdo->prepare("SELECT Titre, Image FROM Serie");
   //  $resultat = $statement->execute();

@@ -38,43 +38,52 @@ $result -> synopsis = $synopsis;
 
 
 // On teste si l'utilisateur à déja noté cette série
-$statement = $pdo->prepare("SELECT Identifiant FROM Notes WHERE Id=?");
+$statement = $pdo->prepare("SELECT Identifiant, Note FROM Notes WHERE Id=? AND Identifiant=?");
+$statement->execute(array(($_POST['id']+1), $_SESSION['user']));
+
+$deja_note = $statement->fetchAll();
+
+$result->test = count($deja_note);
+
+
+if (count($deja_note) != 0) {
+    $result->deja_note = true;
+}
+
+
+
+
+
+// Récupérer la moyenne
+$statement = $pdo->prepare("SELECT AVG(Note) FROM Notes WHERE Id=?");
 $statement->execute(array(($_POST['id']+1)));
 
-$deja_note = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
-
-if (count($deja_note) != 0)
-{
-    $result -> deja_note = true;
-}
-
-
-else {
-    // Récupérer la moyenne
-    $statement = $pdo->prepare("SELECT AVG(Note) FROM Notes WHERE Id=?");
-    $statement->execute(array(($_POST['id']+1)));
-
 // Moyenne de la série.
-    $notes1 = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+$notes1 = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+
+if (!$notes1)
+    $result -> note = false;
+else
     $result -> note = $notes1;
-}
+
+
 
 
 //Récupérer les com
-    $statement = $pdo->prepare("SELECT Commentaire, Identifiant FROM Commentaires WHERE Id=?");
-    $statement->execute(array(($_POST['id']+1)));
+$statement = $pdo->prepare("SELECT Commentaire, Identifiant FROM Commentaires WHERE Id=?");
+$statement->execute(array(($_POST['id']+1)));
 
 // Coms de la série.
-    $coms1 = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+$coms1 = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
 // Id de l'utilisateur qui l'a commenté.
 
-    $statement->execute(array(($_POST['id']+1)));
-    $coms2 = $statement->fetchAll(PDO::FETCH_COLUMN, 1);
+$statement->execute(array(($_POST['id']+1)));
+$coms2 = $statement->fetchAll(PDO::FETCH_COLUMN, 1);
 
 
 // stocker ces infos dans une array par exemple
-    $result -> commentaires = $coms1;
-    $result -> pseudos = $coms2;
+$result -> commentaires = $coms1;
+$result -> pseudos = $coms2;
 
 
 

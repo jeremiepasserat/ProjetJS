@@ -27,14 +27,22 @@
             });
 
         $('#new_serie').submit(function () {
-            alert('prout');
-            //ajax avec new_serie.php.
+            $.ajax({
+                url:'/json/new_serie.php',
+                method:$(this).attr('method'),
+                data:$(this).serialize()
+            }).done(function(data){
+                alert (data.message);
+            }).fail(function () {
+                alert ('fail#new_serie');
+            });
             return false;
         });
 
         $('#ajout_serie').submit(function () {
-            // alert('prout');
             $("#liste").hide();
+            $("#noter").hide();
+            $("#commenter").hide();
             $("#new_serie").show();
             $("#retour_liste").show();
             $("#ajout_serie").hide();
@@ -51,7 +59,6 @@
 
         // new_com.php
         $('#commenter').submit(function () {
-            //   alert(id_page());
             $.ajax({
                 url:'/json/new_com.php',
                 method:$(this).attr('method'),
@@ -72,16 +79,18 @@
         $('#noter').submit(function () {
             //   alert('test');
             $.ajax({
-                url:'/json/stocker_infos.php',
+                url:'/json/new_note.php',
                 method:$(this).attr('method'),
                 data:$(this).serialize()
             }).done(function(data){
-                // actualiser(data.id_note);
-                if (!data.noter){
+              /*  if (!data.noter){
                     $('#noter').hide();
                     $('#dejanote').text('Vous avez déja noté cette série').show();
                 }
-                //       alert(data.message);
+                else
+                {*/
+                    getInfos(data.id);
+                //}
             }).fail(function () {
                 alert ('fail#noter');
             });

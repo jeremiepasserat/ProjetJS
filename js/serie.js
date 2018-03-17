@@ -53,13 +53,20 @@ let getInfos = function (id) {
 
     })
         .done(function (data) {
+            // alert (data.identifiant);
+            //alert (data.note);
             showInfos(data.synopsis, data.commentaires, data.note, id);
-            $('#commenter').show();
             if(data.deja_note)
-                $('#noter').append($('<p />')).html('Vous avez déja noté cette série').show();
+            {
+                $('#dejanote').show();
+                $('#noter').hide();
+            }
             else
+            {
                 $('#noter').show();
-
+                $('#dejanote').hide();
+            }
+            $('#commenter').show();
         })
         .fail(function () {
             alert('getInfos#fail');
@@ -72,75 +79,36 @@ let showInfos = function (synopsis, commentaires, note, id) {
 
 
     $('#synopsis').append($('<p />')).text(synopsis).show();
-    //alert('commentaires.length');
-    //$('#note').append($('<p />')).html('Aucune note').show();
-    //$('#commentaires').append($('<p />')).text(commentaires).show();
 
 
-    if (note === null) {
-        $('#note').append($('<p />')).html('Aucune note').show();
-    }
-    else {
-        $('#note').append($('<p />')).html(note).show();
-    }
 
-    if (commentaires.length === 0) {
+    if (commentaires.length === 0)
+    {
         $('#commentaires').append($('<p />')).html('Aucun commentaire').show();
     }
-    else {
-        //  for ($i = 0; $i < commentaires.count(); ++$i) {
+    else
+    {
         $('#commentaires').append($('<p />')).text(commentaires).show();
-        //$('#commentaires').append($('<p />')).html(commentaires.count()).show();
-
-        //
     }
+
+
+
+    if (note === "")
+//        $('#note').append($('<p />')).text("La note des utilisateurs est : " + note).show();
+    $('#note').append($('<p />')).text("La série n'est pas encore notée").show();
+
+
+    else
+    $('#note').append($('<p />')).text("La note des utilisateurs est : " + note).show();
+ //   $('#note').append($('<p />')).text("La série n'est pas encore notée").show();
+
+
+
+
     $('#id_show_com').val(id);
     $('#id_show_note').val(id);
-}
+};
 
-
-
-/* Si mes 4 fonctions précéndentes sont améliorées les 2 suivantes sont useless */
-
-/* possibilité de faire une fonction pour gérer l'update mysql des notes / commentaires, qui découlera sur un getInfos()*/
-
-//version allégée de la fonction précédente permettant d'actualiser l'affichage de la note et des coms
-//si de nouveaux sont ajoutés
-let showComNote = function (commentaire, note) {
-    if (note === null) {
-        $('#note').append($('<p />')).html('Aucune note').show();
-    }
-    else {
-        $('#note').append($('<p />')).text(note).show();
-    }
-
-    if (commentaires.length === 0) {
-        $('#commentaires').append($('<p />')).html('Aucun commentaire').show();
-    }
-    else {
-        $('#commentaires').append($('<p />')).text(commentaire).show();
-    }
-}
-
-// permet de charger la note et les commentaires de chaque série télé après insertion utilisateur
-// evite les problèmes d'écrasement des $_SESSION dans le code PHP
-let getInfosMaj = function (id) {
-    $.ajax({
-        url: '/json/maj_liste.php',
-        type: 'POST',
-        data: {id: id}
-    })
-        .done(function (data) {
-            //alert(data.commentaire);
-            showComNote(data.commentaires, data.note);
-
-
-        })
-        .fail(function () {
-            alert('fail#infosmaj');
-        });
-
-}
 
 
 
