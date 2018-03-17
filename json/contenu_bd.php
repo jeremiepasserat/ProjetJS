@@ -61,10 +61,8 @@ $statement->execute(array(($_POST['id']+1)));
 // Moyenne de la série.
 $notes1 = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
 
-if (!$notes1)
-    $result -> note = false;
-else
-    $result -> note = $notes1;
+$result -> note = $notes1[0];
+
 
 
 
@@ -81,13 +79,11 @@ $statement->execute(array(($_POST['id']+1)));
 $coms2 = $statement->fetchAll(PDO::FETCH_COLUMN, 1);
 
 
-// stocker ces infos dans une array par exemple
 $result -> commentaires = $coms1;
 $result -> pseudos = $coms2;
 
 
 
-//$result = html_entity_decode($result);
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 header('Content-type: application/json');

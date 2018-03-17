@@ -25,7 +25,6 @@ else {
             $_SESSION['user'] = $_POST['id'];
             $result->truc = 'truc';
             $result->connecte = true;
-            //  $result->message = true;
         }
 
         if (($_POST['id'] == "test") && ($_POST['mdp'] == "test"))  {
@@ -33,20 +32,13 @@ else {
             $_SESSION['user'] = $_POST['id'];
             $result->truc = 'truc';
             $result->connecte = true;
-            //  $result->message = true;
         }
         $result->message = "erreur d'identifiants";
 
-        /*  if(($_POST['id'] == "") || ($_POST['mdp'] == "")) {
 
-              $result->message = "un champ est vide" ;*/
     }
 }
-/*
-else {
-    $result->message = "erreur d'identifiants" ;
-    $result->resultat = false;
-}*/
+
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 header('Content-type: application/json');

@@ -36,8 +36,7 @@ else {
 
     $resultat = $statement->execute(array(($_POST['id_show_com'] + 1), htmlspecialchars($com), $_SESSION['user']));
 
-  //  $statement = $pdo->prepare("SELECT Titre, Image FROM Serie");
-  //  $resultat = $statement->execute();
+
     if (!$resultat)
     {
         $result->message = "Le petit fail des familles";

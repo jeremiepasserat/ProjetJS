@@ -1,7 +1,4 @@
-/* les fonctions get vont chercher les données, les fonctions show les affichent sur ma page*/
 
-
-/*doit prendre en compte le synopsis qui est invariant et laisser les 2 dernières uniquement pour com / note */
 
 // permet de charger les titres et les images de chaque série télé
 let createListe = function () {
@@ -53,8 +50,7 @@ let getInfos = function (id) {
 
     })
         .done(function (data) {
-            // alert (data.identifiant);
-            //alert (data.note);
+
             showInfos(data.synopsis, data.commentaires, data.note, id);
             if(data.deja_note)
             {
@@ -92,15 +88,12 @@ let showInfos = function (synopsis, commentaires, note, id) {
     }
 
 
-
-    if (note === "")
-//        $('#note').append($('<p />')).text("La note des utilisateurs est : " + note).show();
+    if (note === null)
     $('#note').append($('<p />')).text("La série n'est pas encore notée").show();
 
 
     else
     $('#note').append($('<p />')).text("La note des utilisateurs est : " + note).show();
- //   $('#note').append($('<p />')).text("La série n'est pas encore notée").show();
 
 
 
