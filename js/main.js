@@ -4,6 +4,28 @@
 
     $(() => {
 
+
+        $.ajax({
+            url:'/json/est_connecte.php'
+        })
+            .done(function(data) {
+                if (data.test){
+                    //alert('test');
+                    createListe();
+                    //alert (data.test);
+                    $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id).show();
+                    $('#ajout_serie').show();
+                    $('#deconnexion').show();
+                }
+                else {
+                    $('#connexion').show();
+                    $('#liste').hide();
+                }
+            })
+            .fail(function () {
+                alert ('fail');
+            });
+
         $('#new_serie').submit(function () {
             alert('prout');
             //ajax avec new_serie.php.
@@ -31,15 +53,15 @@
         $('#commenter').submit(function () {
             //   alert(id_page());
             $.ajax({
-                url:'/json/stocker_infos.php',
+                url:'/json/new_com.php',
                 method:$(this).attr('method'),
                 data:$(this).serialize()
             }).done(function(data){
-                if(data.post_vide){
-                    alert(data.message);
+                if(!data.post_vide){
+
+                   getInfos(data.id);
                 }
-                else
-                    getInfosMaj(data.id_com);
+                alert(data.message);
             }).fail(function () {
                 alert ('fail#commenter');
             });
@@ -62,28 +84,11 @@
                 //       alert(data.message);
             }).fail(function () {
                 alert ('fail#noter');
-            })
+            });
             return false;
         });
 
-        $.ajax({
-            url:'/json/est_connecte.php'
-        })
-            .done(function(data) {
-                if (data.test){
-                    createListe();
-                    $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id).show();
-                    $('#ajout_serie').show();
-                    $('#deconnexion').show();
-                }
-                else {
-                    $('#connexion').show();
-                    $('#liste').hide();
-                }
-            })
-            .fail(function () {
-                alert ('fail');
-            });
+
 
         $('#connexion').submit(function(){
             $.ajax({
@@ -93,6 +98,7 @@
             })
                 .done(function (data) {
                     if (data.connecte)
+                    //    $('#ajout_serie').show();
                         window.location.reload();
                     else
                         alert(data.message);
