@@ -73,10 +73,11 @@
     <input type="submit" value="se deconnecter">
 </form>
 
-<form id="new_serie" action="/json/new_serie.php" method="post" style="display: none">
+<form id="new_serie" action="/json/new_serie.php" method="post" enctype="multipart/form-data" style="display: none">
     <label>Entrer le titre de la série</label>
     <input type="text" name="titre" id="titre"></br>
     <label>Insérer le poster de la série</label>
+    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
     <input type="file" name="image" id="image"></br>
     <label>Entrer le synopsis de la série</label>
     <input type="text" name="new_synopsis" id="new_synopsis"></br>

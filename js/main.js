@@ -32,7 +32,9 @@
                 method:$(this).attr('method'),
                 data:$(this).serialize()
             }).done(function(data){
-                alert (data.message);
+               alert (data.test1);
+                //alert (data.test2);
+              //  alert (data.message);
             }).fail(function () {
                 alert ('fail#new_serie');
             });
@@ -41,11 +43,15 @@
 
         $('#ajout_serie').submit(function () {
             $("#liste").hide();
+            $("#ajout_serie").hide();
+            $("#synopsis").hide();
+            $("#note").hide();
+            $("#commentaires").hide();
             $("#noter").hide();
             $("#commenter").hide();
             $("#new_serie").show();
             $("#retour_liste").show();
-            $("#ajout_serie").hide();
+
             return false;
         });
 
@@ -65,7 +71,7 @@
             }).done(function(data){
                 if(!data.post_vide){
 
-                   getInfos(data.id);
+                    getInfos(data.id);
                 }
             }).fail(function () {
                 alert ('fail#commenter');
@@ -79,7 +85,7 @@
                 method:$(this).attr('method'),
                 data:$(this).serialize()
             }).done(function(data){
-                    getInfos(data.id);
+                getInfos(data.id);
             }).fail(function () {
                 alert ('fail#noter');
             });
@@ -122,11 +128,5 @@
                 });
             return false;
         });
-
-
-        //$('#liste').show();
-
     });
-
-
 }) ();
