@@ -15,6 +15,7 @@
                     //alert (data.test);
                     $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id).show();
                     $('#ajout_serie').show();
+                   // $('#newserie').hide();
                     $('#deconnexion').show();
                 }
                 else {
@@ -26,15 +27,17 @@
                 alert ('fail');
             });
 
-        $('#new_serie').submit(function () {
+        $('#newserie').submit(function () {
             $.ajax({
-                url:'/json/new_serie.php',
+                url:$(this).attr('action'),
                 method:$(this).attr('method'),
-                data:$(this).serialize()
+                data:$(this).serialize(),
+                //contentType: false,
             }).done(function(data){
-               alert (data.test1);
-                //alert (data.test2);
-              //  alert (data.message);
+                //alert('prout');
+                alert (data.test3);
+               // alert (data.test2)
+                // alert (data.message);
             }).fail(function () {
                 alert ('fail#new_serie');
             });
@@ -49,7 +52,7 @@
             $("#commentaires").hide();
             $("#noter").hide();
             $("#commenter").hide();
-            $("#new_serie").show();
+            $("#newserie").show();
             $("#retour_liste").show();
 
             return false;
