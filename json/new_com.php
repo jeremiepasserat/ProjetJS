@@ -18,7 +18,10 @@ $result->message = " ";
 
 $result->id =$_POST['id_show_com'];
 
-$com = $_POST['nvocommentaire'];
+$date = date("d-m-Y");
+$heure = date("H:i");
+
+$com = $_SESSION['user'] . ", le " . $date . " à " . $heure . " : " . $_POST['nvocommentaire'] . PHP_EOL;
 
 
 if (($_POST['nvocommentaire']) == ""){

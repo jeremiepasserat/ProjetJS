@@ -50,11 +50,10 @@ let getInfos = function (id) {
 
     })
         .done(function (data) {
-
             showInfos(data.synopsis, data.commentaires, data.note, id);
             if(data.deja_note)
             {
-                $('#dejanote').show();
+                $('#dejanote').html("Série déja notée : " + data.note_user + "/10").show();
                 $('#noter').hide();
             }
             else
@@ -74,9 +73,9 @@ let getInfos = function (id) {
 let showInfos = function (synopsis, commentaires, note, id) {
 
 
-    $('#synopsis').append($('<p />')).text(synopsis).show();
+    $('#synopsis').append($('<p />')).html("Résumé de la série : " + synopsis).show();
 
-
+        alert(commentaires.length);
 
     if (commentaires.length === 0)
     {
@@ -84,8 +83,19 @@ let showInfos = function (synopsis, commentaires, note, id) {
     }
     else
     {
-        $('#commentaires').append($('<p />')).text(commentaires).show();
+
+        $('#commentaires').append($('<p />')).html(commentaires).show();
+
+        //p = $('<div />');
+       // for (let i = 0; i < commentaires.length; ++i ) {
+            //p.html(html(commentaires[i]));
+         //   $('#commentaires').append('<span>' + commentaires[i] + '</span>')
+
+        //$('#commentaires').show();
     }
+
+    //p.empty();
+
 
 
     if (note === null)

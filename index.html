@@ -41,23 +41,20 @@
     <form id="ajout_serie" style="display: none">
         <input type="submit" value="ajouter une série">
     </form>
-    <table id="liste"></table>
+    <table id="liste"></table><br />
     <div id="synopsis" style="display: none">
-        <p>Résumé de la série</p>
-    </div>
+    </div><br />
     <div id="note" style="display: none">
-        <p>Note moyenne de l'ensemble des utilisateurs</p>
     </div>
     <div id="commentaires" style="display: none">
-        <p>Commentaires des différents utilisateurs</p>
     </div>
     <form id="commenter" method="post" style="display: none">
 
         <p>Renseigner un commentaire</p>
         <input type="text" name="nvocommentaire" id="nvocommentaire" placeholder="Votre commentaire">
-        </br>
+        <br />
         <input type="submit" id="envoicom" name="envoicom">
-        </br>
+        <br />
         <input type="hidden" id="id_show_com" name="id_show_com">
     </form>
     <form id="noter" method="post" style="display: none">
@@ -67,7 +64,7 @@
         <input type="submit" name="envoinote" value="noter">
         <input type="hidden" id="id_show_note" name="id_show_note">
     </form>
-    <p id="dejanote" style="display: none">Série déja notée</p>
+    <p id="dejanote" style="display: none"></p>
 
     <form id="deconnexion" action="/json/deconnexion.php" method="post" style="display: none">
         <input type="submit" value="se deconnecter">

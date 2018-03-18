@@ -43,10 +43,10 @@ $statement->execute(array(($_POST['id']+1), $_SESSION['user']));
 
 $deja_note = $statement->fetchAll();
 
-$result->test = count($deja_note);
 
 
 if (count($deja_note) != 0) {
+    $result->note_user = $deja_note[0][1];
     $result->deja_note = true;
 }
 
