@@ -27,7 +27,7 @@ $pdo = new PDO($dsn, "155055", "155055");
 $statement = $pdo->prepare("INSERT INTO Notes (Id, Note, Identifiant) VALUES (?, ?, ?)");
 $resultat = $statement->execute(array(($_POST['id_show_note'] + 1), $note, $_SESSION['user']));
 
-  $statement = $pdo->prepare("SELECT Titre, Image FROM Serie");
+$statement = $pdo->prepare("SELECT Titre, Image FROM Serie");
 $resultat = $statement->execute();
 
 if (!$resultat)

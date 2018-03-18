@@ -55,7 +55,7 @@ if (count($deja_note) != 0) {
 
 
 // Récupérer la moyenne
-$statement = $pdo->prepare("SELECT AVG(Note) FROM Notes WHERE Id=?");
+$statement = $pdo->prepare("SELECT ROUND (AVG(Note), 2) FROM Notes WHERE Id=?");
 $statement->execute(array(($_POST['id']+1)));
 
 // Moyenne de la série.

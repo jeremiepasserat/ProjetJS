@@ -15,27 +15,32 @@ $result->connecte = false;
 
 $result->test = false;
 
-if (($_POST['id'] == "") || ($_POST['mdp'] == "")){
-    $result->message = "merci de ne pas laisser un champ vide";
+if (isset($_SESSION['user']) && $_SESSION['user'] == $_POST['id']){
+    $result->message = "cet utilisateur est déja connecté";
 }
-else {
-    if (isset ($_POST['id']) && isset($_POST['mdp'])) {
-        if (($_POST['id'] == "olivier") && ($_POST['mdp'] == "pons"))  {
-            $_SESSION['connecte'] = "ok";
-            $_SESSION['user'] = $_POST['id'];
-            $result->truc = 'truc';
-            $result->connecte = true;
+else{
+    if (($_POST['id'] == "") || ($_POST['mdp'] == "")){
+        $result->message = "merci de ne pas laisser un champ vide";
+    }
+    else {
+        if (isset ($_POST['id']) && isset($_POST['mdp'])) {
+            if (($_POST['id'] == "olivier") && ($_POST['mdp'] == "pons")) {
+                $_SESSION['connecte'] = "ok";
+                $_SESSION['user'] = $_POST['id'];
+                $result->truc = 'truc';
+                $result->connecte = true;
+            }
+
+            if (($_POST['id'] == "test") && ($_POST['mdp'] == "test")) {
+                $_SESSION['connecte'] = "ok";
+                $_SESSION['user'] = $_POST['id'];
+                $result->truc = 'truc';
+                $result->connecte = true;
+            }
+            $result->message = "erreur d'identifiants";
+
+
         }
-
-        if (($_POST['id'] == "test") && ($_POST['mdp'] == "test"))  {
-            $_SESSION['connecte'] = "ok";
-            $_SESSION['user'] = $_POST['id'];
-            $result->truc = 'truc';
-            $result->connecte = true;
-        }
-        $result->message = "erreur d'identifiants";
-
-
     }
 }
 

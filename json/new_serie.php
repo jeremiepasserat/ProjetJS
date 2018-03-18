@@ -18,23 +18,23 @@ $synopsis = $_POST['new_synopsis'];
 
 $result->vide = false;
 
-    if ($titre == "" || $synopsis == "") {
-        $result->vide = true;
-        $result->message = "Merci de remplir les champs";
-    } else {
-        $result->message = "Merci pour votre ajout";
-        $dsn = 'mysql:host=mysql-tvshowtime-jp.alwaysdata.net;dbname=tvshowtime-jp_bd;charset=utf8';
+if ($titre == "" || $synopsis == "") {
+    $result->vide = true;
+    $result->message = "Merci de remplir les champs";
+} else {
+    $result->message = "Merci pour votre ajout";
+    $dsn = 'mysql:host=mysql-tvshowtime-jp.alwaysdata.net;dbname=tvshowtime-jp_bd;charset=utf8';
 
-        $pdo = new PDO($dsn, "155055", "155055");
+    $pdo = new PDO($dsn, "155055", "155055");
 
-        $statement = $pdo->prepare("INSERT INTO Serie (Id, Titre, Image, Synopsis) VALUES (?, ?, ?, ?)");
+    $statement = $pdo->prepare("INSERT INTO Serie (Id, Titre, Image, Synopsis) VALUES (?, ?, ?, ?)");
 
-        $resultat = $statement->execute(array(0, htmlspecialchars($titre), htmlspecialchars($poster), htmlspecialchars($synopsis)));
+    $resultat = $statement->execute(array(0, htmlspecialchars($titre), htmlspecialchars($poster), htmlspecialchars($synopsis)));
 
 
-        if (!$resultat)
-            $result->message = "L'ajout à échoué";
-    }
+    if (!$resultat)
+        $result->message = "L'ajout à échoué";
+}
 
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

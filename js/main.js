@@ -4,14 +4,13 @@
 
     $(() => {
 
-
         $.ajax({
-            url:'/json/est_connecte.php'
+            url:'/json/est_connecte.php',
         })
             .done(function(data) {
                 if (data.test){
                     createListe();
-                    $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id + '<br />' + 'Cliquez sur les images pour en savoir plus').show();
+                    $('#bienvenue').append($('<p />')).html('TV Showtime - Bienvenue ' + data.id + '<br />' + 'Cliquez sur les images pour en savoir plus').show();
                     $('#ajout_serie').show();
                     $('#deconnexion').show();
                 }
@@ -66,7 +65,7 @@
             $.ajax({
                 url:'/json/new_com.php',
                 method:$(this).attr('method'),
-                data:$(this).serialize()
+                data:$(this).serialize(),
             }).done(function(data){
                 if(!data.post_vide){
 
@@ -82,7 +81,7 @@
             $.ajax({
                 url:'/json/new_note.php',
                 method:$(this).attr('method'),
-                data:$(this).serialize()
+                data:$(this).serialize(),
             }).done(function(data){
                 getInfos(data.id);
             }).fail(function () {
@@ -97,7 +96,7 @@
             $.ajax({
                 url: $(this).attr('action'),
                 method:$(this).attr('method'),
-                data:$(this).serialize()
+                data:$(this).serialize(),
             })
                 .done(function (data) {
                     if (data.connecte)
@@ -116,7 +115,7 @@
             $.ajax({
                 url: $(this).attr('action'),
                 method:$(this).attr('method'),
-                data:$(this).serialize()
+                data:$(this).serialize(),
             })
                 .done(function () {
                     window.location.reload();
