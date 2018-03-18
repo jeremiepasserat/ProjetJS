@@ -10,12 +10,9 @@
         })
             .done(function(data) {
                 if (data.test){
-                    //alert('test');
                     createListe();
-                    //alert (data.test);
                     $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id).show();
                     $('#ajout_serie').show();
-                   // $('#newserie').hide();
                     $('#deconnexion').show();
                 }
                 else {
@@ -28,16 +25,14 @@
             });
 
         $('#newserie').submit(function () {
+            let form = $('#newserie')[0];
+            let formData = new FormData(form);
             $.ajax({
                 url:$(this).attr('action'),
                 method:$(this).attr('method'),
                 data:$(this).serialize(),
-                //contentType: false,
             }).done(function(data){
-                //alert('prout');
-                alert (data.test3);
-               // alert (data.test2)
-                // alert (data.message);
+                alert(data.message);
             }).fail(function () {
                 alert ('fail#new_serie');
             });
@@ -51,6 +46,7 @@
             $("#note").hide();
             $("#commentaires").hide();
             $("#noter").hide();
+            $("#dejanote").hide();
             $("#commenter").hide();
             $("#newserie").show();
             $("#retour_liste").show();
@@ -59,7 +55,7 @@
         });
 
         $('#retour_liste').submit(function () {
-            $("#new_serie").hide();
+            $("#newserie").hide();
             $("#retour_liste").hide();
             $("#liste").show();
             $("#ajout_serie").show();
@@ -105,7 +101,6 @@
             })
                 .done(function (data) {
                     if (data.connecte)
-                    //    $('#ajout_serie').show();
                         window.location.reload();
                     else
                         alert(data.message);

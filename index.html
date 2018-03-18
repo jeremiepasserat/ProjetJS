@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title>TV Showtime</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,92 +15,82 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<div>
-    <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <p>Bienvenue sur mon site sur vos séries télé préférées.</p>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="js/vendor/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/serie.js"></script>
-    <script src="js/main.js"></script>
+<!-- Add your site or application content here -->
+<p>Bienvenue sur mon site sur vos séries télé préférées.</p>
 
-    <form id="connexion" action="/json/connexion.php" method="post" style="display: none">
-        <input type="text" name="id"></br>
-        <input type="password" name="mdp"></br>
-        <input type="submit" value="se connecter">
-    </form>
+<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/vendor/jquery-3.2.1.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/serie.js"></script>
+<script src="js/main.js"></script>
 
-    <form id="bienvenue"></form>
+<form id="connexion" action="/json/connexion.php" method="post" style="display: none">
+    <input type="text" name="id"><br />
+    <input type="password" name="mdp"><br />
+    <input type="submit" value="se connecter">
+</form>
 
-    <form id="ajout_serie" style="display: none">
-        <input type="submit" value="ajouter une série">
-    </form>
-    <table id="liste"></table><br />
-    <div id="synopsis" style="display: none">
-    </div><br />
-    <div id="note" style="display: none">
-    </div><br />
-    <div id="commentaires" style="display: none">
-    </div>
-    <form id="commenter" method="post" style="display: none">
+<form id="bienvenue"></form>
 
-        <p>Renseigner un commentaire :</p>
-        <input type="text" name="nvocommentaire" id="nvocommentaire" placeholder="Votre commentaire">
-        <br />
-        <input type="submit" id="envoicom" name="envoicom">
-        <br />
-        <input type="hidden" id="id_show_com" name="id_show_com">
-    </form>
-    <form id="noter" method="post" style="display: none">
+<form enctype="multipart/form-data" method="post" action="/json/new_serie.php" id="newserie" style="display: none"> <!-- enctype="multipart/form-data">-->
 
-        <p>Votre note entre 1 et 10 :</p>
-        <input type="number" name="nvellenote" step="1" value="0" min="0" max="10" style="display: initial"></br>
-        <input type="submit" name="envoinote" value="noter">
-        <input type="hidden" id="id_show_note" name="id_show_note">
-    </form>
-    <p id="dejanote" style="display: none"></p>
+    <label>Entrer le titre de la série</label>
+    <input type="text" name="new_titre" id="new_titre"><br />
 
-    <form id="deconnexion" action="/json/deconnexion.php" method="post" style="display: none">
-        <input type="submit" value="se deconnecter">
-    </form>
+    <label>Poster de la série (url)</label>
 
+    <input type="text" name="poster" id="poster" /><br />
+    <label>Entrer le synopsis de la série</label>
 
+    <input type="text" name="new_synopsis" id="new_synopsis"><br />
+    <input type="submit" name="submit" value="Envoyer" />
 
+</form><br />
 
+<form id="retour_liste" style="display: none">
+    <input type="submit" value="retour aux séries">
+</form>
 
-        <form enctype="multipart/form-data" method="post" action="/json/new_serie.php" id="newserie" style="display: none"> <!-- enctype="multipart/form-data">-->
+<form id="ajout_serie" style="display: none">
+    <input type="submit" value="ajouter une série">
+</form>
+<table id="liste"></table><br />
+<div id="synopsis" style="display: none">
+</div><br />
+<div id="note" style="display: none">
+</div><br />
+<div id="commentaires" style="display: none">
+</div>
+<form id="commenter" method="post" style="display: none">
 
-            <label>Entrer le titre de la série</label>
-            <input type="text" name="new_titre" id="new_titre"><br />
+    <p>Renseigner un commentaire :</p>
+    <input type="text" name="nvocommentaire" id="nvocommentaire" placeholder="Votre commentaire">
+    <br />
+    <input type="submit" id="envoicom" name="envoicom">
+    <br />
+    <input type="hidden" id="id_show_com" name="id_show_com">
+</form>
+<form id="noter" method="post" style="display: none">
 
-            <label for="icone">Poster de la série (JPG, PNG ou GIF) :</label><br />
+    <p>Votre note entre 1 et 10 :</p>
+    <input type="number" name="nvellenote" step="1" value="0" min="0" max="10" style="display: initial"><br />
+    <input type="submit" name="envoinote" value="noter">
+    <input type="hidden" id="id_show_note" name="id_show_note">
+</form>
+<p id="dejanote" style="display: none"></p>
 
-            <input type="file" name="icone" id="icone" /><br />
-            <label>Entrer le synopsis de la série</label>
-
-            <input type="text" name="new_synopsis" id="new_synopsis"><br />
-            <input type="submit" name="submit" value="Envoyer" />
-
-        </form>
-
-    <form id="retour_liste" style="display: none">
-        <input type="submit" value="retour aux séries">
-    </form>
+<form id="deconnexion" action="/json/deconnexion.php" method="post" style="display: none">
+    <input type="submit" value="se deconnecter">
+</form>
 
 
-
-
-
-
-
-
-    </body>
+</body>
 </html>
 
 
