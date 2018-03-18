@@ -75,7 +75,6 @@ let showInfos = function (synopsis, commentaires, note, id) {
 
     $('#synopsis').append($('<p />')).html("Résumé de la série : " + synopsis).show();
 
-        alert(commentaires.length);
 
     if (commentaires.length === 0)
     {
@@ -84,19 +83,19 @@ let showInfos = function (synopsis, commentaires, note, id) {
     else
     {
 
-        $('#commentaires').append($('<p />')).html(commentaires).show();
+        let newHTML = [];
+        newHTML.push('<span>' + "Commentaires utilisateurs :" + '<br />' + '</span>')
+        for (let i = 0; i < commentaires.length; i++) {
+            newHTML.push('<span>' + commentaires[i] + '<br />' + '</span>');
+        }
+        $("#commentaires").html(newHTML.join("")).show();
 
-        //p = $('<div />');
-       // for (let i = 0; i < commentaires.length; ++i ) {
-            //p.html(html(commentaires[i]));
-         //   $('#commentaires').append('<span>' + commentaires[i] + '</span>')
+       // $('#commentaires').append($('<p />')).html(commentaires + '<br />').show();
 
-        //$('#commentaires').show();
+
+        //$('#commentaires').html('<span>' + commentaires.join('</span><span>')+'</span>').show();
+
     }
-
-    //p.empty();
-
-
 
     if (note === null)
     $('#note').append($('<p />')).text("La série n'est pas encore notée").show();
