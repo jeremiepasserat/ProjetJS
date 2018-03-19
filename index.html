@@ -21,6 +21,7 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
+<h3>TV Showtime</h3>
 <p>Bienvenue sur mon site sur vos séries télé préférées.</p>
 
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>
@@ -31,8 +32,10 @@
 <script src="js/main.js"></script>
 
 <form id="connexion" action="/json/connexion.php" method="post" style="display: none">
+    <label> Identifiant</label><br />
     <input type="text" name="id"><br />
-    <input type="password" name="mdp"><br />
+    <label> Mot de Passe</label><br />
+    <input type="password" name="mdp"><br /><br />
     <input type="submit" value="se connecter">
 </form>
 
@@ -59,7 +62,7 @@
 
 <form id="ajout_serie" style="display: none">
     <input type="submit" value="ajouter une série">
-</form>
+</form><br />
 <table id="liste"></table><br />
 <div id="synopsis" style="display: none">
 </div><br />

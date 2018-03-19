@@ -10,7 +10,7 @@
             .done(function(data) {
                 if (data.test){
                     createListe();
-                    $('#bienvenue').append($('<p />')).html('TV Showtime - Bienvenue ' + data.id + '<br />' + 'Cliquez sur les images pour en savoir plus').show();
+                    $('#bienvenue').append($('<p />')).html('Bienvenue ' + data.id + '<br />' + 'Cliquez sur les images pour en savoir plus').show();
                     $('#ajout_serie').show();
                     $('#deconnexion').show();
                 }
